@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace lesson4
 {
@@ -7,59 +9,40 @@ namespace lesson4
     {
         static void Main(string[] args)
         {
-            TestArray t = new TestArray("C:\\Users\\User\\Desktop\\lesson4-main\\lesson4\\lesson4\\data.txt");
+            Message.text = new StringBuilder("Вывести все слова сообщения, которые начинаются и заканчиваются на одну и ту же букву.");
+            //Message.ContainsWordsOfLength(4);
 
+            string s = "Приве Фарид, как дела Фарид";
+            string[] arr = new string[] { "Фарид", "как" };
 
-            
+            Console.WriteLine(Message.IsRevers("qaz", "zaqa"));
         }
 
 
-        //показывает результат
-        public void result(int[] arr)
+        /*Создать программу, которая будет проверять корректность ввода логина. Корректным логином будет строка от 2 до 10 символов, содержащая только буквы латинского алфавита или цифры, при этом цифра не может быть первой:
+        а) без использования регулярных выражений;
+        */
+        public static bool ValidLogin(string login)
         {
-            int count = 0;
+            if (Char.IsNumber(login[0])) return false;
 
-            for (int i = 0; i < arr.Length - 1; i++)
+            else if (login.Length < 2 || login.Length > 10) return false;
+
+            for(int i = 0; i < login.Length; i++)
             {
-                if (isValid(arr[i]) || isValid(arr[i + 1]))
-                {
-                    count++;
-                }
+                if (!Char.IsNumber(login[i]) && !Char.IsLetter(login[i])) return false;
             }
 
-            Console.WriteLine(count);
+            return true;
         }
 
-        //создает массив из 20ти элементов
-        public static int[] createArray()
+
+        /*б) **с использованием регулярных выражений.*/
+        public static bool ValidLoginByRegular(string str)
         {
-            int[] arr = new int[20];
-            Random random = new Random();
-
-            for (int i = 0; i < arr.Length; i++)
-            {
-                int val = random.Next(-10000, 10000);
-                arr[i] = val;
-            }
-
-            return arr;
+            Regex regex = new Regex(@"^[^0-9].{2,9}$");
+            return regex.IsMatch(str);
         }
 
-
-        //выводит в консоле массив
-        public static void print(int[] arr)
-        {
-            for(int i = 0; i < arr.Length; i++)
-            {
-                Console.WriteLine(arr[i]);
-            }
-        }
-
-
-        //проверяет на деление на 3
-        public static bool isValid(int i)
-        {
-            return i % 3 == 0;
-        }
     }
 }
