@@ -2,46 +2,49 @@ using System;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
+using lesson6_2;
+using lesson6_3;
 namespace lesson4
 {
+    
     class Program
     {
-        static void Main(string[] args)
+        List<Student> students = new List<Student>();
+
+        public delegate double Fun(double x, double a);
+
+        public static void Table(Fun F, double x, double b, double a)
         {
-            Message.text = new StringBuilder("Вывести все слова сообщения, которые начинаются и заканчиваются на одну и ту же букву.");
-            //Message.ContainsWordsOfLength(4);
-
-            string s = "Приве Фарид, как дела Фарид";
-            string[] arr = new string[] { "Фарид", "как" };
-
-            Console.WriteLine(Message.IsRevers("qaz", "zaqa"));
-        }
-
-
-        /*Создать программу, которая будет проверять корректность ввода логина. Корректным логином будет строка от 2 до 10 символов, содержащая только буквы латинского алфавита или цифры, при этом цифра не может быть первой:
-        а) без использования регулярных выражений;
-        */
-        public static bool ValidLogin(string login)
-        {
-            if (Char.IsNumber(login[0])) return false;
-
-            else if (login.Length < 2 || login.Length > 10) return false;
-
-            for(int i = 0; i < login.Length; i++)
+            Console.WriteLine("----- X ----- Y -----");
+            while (x <= b)
             {
-                if (!Char.IsNumber(login[i]) && !Char.IsLetter(login[i])) return false;
+                Console.WriteLine("| {0,8:0.000} | {1,8:0.000} |", x, F(x, a));
+                x += 1;
             }
-
-            return true;
+            Console.WriteLine("---------------------");
         }
 
 
-        /*б) **с использованием регулярных выражений.*/
-        public static bool ValidLoginByRegular(string str)
+        /*Изменить программу вывода таблицы функции так, 
+         * чтобы можно было передавать функции типа double (double, double). 
+         * Продемонстрировать работу на функции с функцией a*x^2 и функцией a*sin(x).
+        */
+        public static double MyFunc(double x, double a)
         {
-            Regex regex = new Regex(@"^[^0-9].{2,9}$");
-            return regex.IsMatch(str);
+            return a * x * x;
+        }
+
+        public static double MyFunc2(double x, double a)
+        {
+            return a * Math.Sin(x);
+        }
+
+        static void Main()
+        {
+            //DoubleBinary.PrintMenu();
+           
         }
 
     }
