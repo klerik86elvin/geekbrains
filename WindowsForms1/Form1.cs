@@ -14,6 +14,8 @@ namespace WindowsForms1
     {
         int _comandCount;
         int _receivedNum = 15;
+
+        Stack<string> _stack = new Stack<string>();
         public Form1()
         {
             InitializeComponent();
@@ -22,6 +24,7 @@ namespace WindowsForms1
             btnCommand2.Text = "x2";
             btnReset.Text = "Сброс";
             btnStart.Text = "старт";
+            btnUndo.Text = "Отмена";
             lblNumber.Text = "0";
             lblComandCount.Text = "";
             btnComandCount.Text = "Количество команд";
@@ -36,6 +39,7 @@ namespace WindowsForms1
 
         private void btnCommand1_Click(object sender, EventArgs e)
         {
+            _stack.Push(lblNumber.Text);
             lblNumber.Text = (int.Parse(lblNumber.Text) + 1).ToString();
             _comandCount++;
 
@@ -48,6 +52,7 @@ namespace WindowsForms1
 
         private void btnCommand2_Click(object sender, EventArgs e)
         {
+            _stack.Push(lblNumber.Text);
             lblNumber.Text = (int.Parse(lblNumber.Text) * 2).ToString();
             _comandCount++;
         }
@@ -90,5 +95,12 @@ namespace WindowsForms1
             return step;
         }
 
+
+        /*в) *Добавить кнопку «Отменить», которая отменяет последние ходы. Используйте обобщенный класс Stack.
+*/
+        private void btnUndo_Click(object sender, EventArgs e)
+        {
+            lblNumber.Text = _stack.Pop();
+        }
     }
 }

@@ -36,6 +36,7 @@ namespace WindowsForms1
             this.btnComandCount = new System.Windows.Forms.Button();
             this.lblComandCount = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
+            this.btnUndo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCommand1
@@ -106,9 +107,20 @@ namespace WindowsForms1
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
+            // btnUndo
+            // 
+            this.btnUndo.Location = new System.Drawing.Point(634, 400);
+            this.btnUndo.Name = "btnUndo";
+            this.btnUndo.Size = new System.Drawing.Size(75, 23);
+            this.btnUndo.TabIndex = 8;
+            this.btnUndo.Text = "button1";
+            this.btnUndo.UseVisualStyleBackColor = true;
+            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(731, 435);
+            this.Controls.Add(this.btnUndo);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.lblComandCount);
             this.Controls.Add(this.btnComandCount);
@@ -133,6 +145,7 @@ namespace WindowsForms1
         private System.Windows.Forms.Button btnComandCount;
         private System.Windows.Forms.Label lblComandCount;
         private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Button btnUndo;
     }
 }
 
